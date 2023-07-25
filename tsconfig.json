@@ -1,0 +1,13 @@
+{
+  "compileOptions": {
+    "react-native/no-inline-styles": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"],
+  "extends": "@tsconfig/react-native/tsconfig.json"
+}
