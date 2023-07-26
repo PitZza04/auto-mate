@@ -1,13 +1,13 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Home, ShoppingCart, User2} from 'lucide-react-native';
+import {colors} from '../theme/colors';
 import {useRootNavigation} from '../hooks/use-navigation';
 
 import {HomeScreen} from '../screen/home';
 import {AccountScreen} from '../screen/account';
 import {CartScreen} from '../screen/cart';
 
-import AccountNavigator from '../pages/account';
 import TabBarLabel from './tab-bar-label';
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
@@ -24,10 +24,12 @@ const BottomTabNavigator = () => {
   };
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={({route}) => ({
+        headerShadowVisible: true,
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: '#000',
-        tabBarInactiveTintColor: '#5e6267',
+        tabBarInactiveTintColor: colors.textDim,
         tabBarLabelStyle: {
           paddingTop: 5,
         },

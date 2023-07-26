@@ -7,39 +7,43 @@ import BottomTabNavigator from './bottom-tab-navigator';
 import {SettingsScreen} from '../screen/settings';
 import {NotificationScreen} from '../screen/notification';
 import {LoginScreen} from '../screen/login';
+import {Header} from '../components/header';
+import {colors} from '../theme';
+import {useRootNavigation} from '../hooks/use-navigation';
 
 const RootStack = createStackNavigator();
 
 export const RootNavigator = () => {
+  const navigation = useRootNavigation();
   return (
     <RootStack.Navigator
       screenOptions={{
         headerShown: false,
-        headerShadowVisible: {
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-        },
       }}>
       <RootStack.Screen name="App" component={BottomTabNavigator} />
 
       <RootStack.Group
         screenOptions={{
-          presentation: 'transparentModal',
-          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
           headerShown: true,
+          header: () => (
+            <Header
+              titleStyle={{color: colors.black}}
+              leftIcon="caretLeft"
+              leftIconColor={colors.black}
+              onLeftPress={() => navigation.goBack()}
+            />
+          ),
         }}>
         <RootStack.Screen
           name={'Login'}
           component={LoginScreen}
-          options={{headerShown: false}}
+          options={{headerTitle: 'Log In'}}
         />
       </RootStack.Group>
 
       <RootStack.Group
         screenOptions={{
           headerShown: true,
-          headerBackTitle: 'Back',
         }}>
         <RootStack.Screen name="Notification" component={NotificationScreen} />
       </RootStack.Group>
