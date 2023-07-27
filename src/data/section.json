@@ -53,5 +53,55 @@
         "categoryName": "Stering Wheel"
       }
     ]
+  },
+  {
+    "title": "Added Services",
+    "data": [
+      {
+        "id": 1,
+        "iconName": "maintenance",
+        "categoryName": "Car Wash"
+      },
+      {
+        "id": 2,
+        "iconName": "maintenance",
+        "categoryName": "Auto Glass"
+      },
+      {
+        "id": 3,
+        "iconName": "maintenance",
+        "categoryName": "Upholstery"
+      },
+      {
+        "id": 4,
+        "iconName": "maintenance",
+        "categoryName": "Calibration"
+      },
+      {
+        "id": 5,
+        "iconName": "maintenance",
+        "categoryName": "Painting"
+      },
+      {
+        "id": 6,
+        "iconName": "maintenance",
+        "categoryName": "Denting"
+      },
+      {
+        "id": 7,
+        "iconName": "maintenance",
+        "categoryName": "Accessories"
+      },
+      {
+        "id": 8,
+        "iconName": "maintenance",
+        "categoryName": "Mufler"
+      },
+      {
+        "id": 9,
+        "iconName": "maintenance",
+        "categoryName": "Fabrication"
+      }
+    ]
   }
 ]

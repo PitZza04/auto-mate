@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect} from 'react';
+import React, {useCallback, useLayoutEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,19 +12,22 @@ import {
 
 import {useRootNavigation} from '../../hooks/use-navigation';
 import {Header} from '../../components/header';
-import {colors, images} from '../../theme';
+import {colors, images, spacing} from '../../theme';
 import services from '../../data/services.json';
-import added from '../../data/added.json';
+import section from '../../data/section.json';
 import {getWindowHeight, getWindowWidth} from '../../utils/layout';
+import {CategoryHeader} from './category-header';
 
-const CategoryHeader = ({title}) => (
-  <View style={styles.header}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+// const CategoryHeader = ({title}) => (
+//   <View style={[styles.header, {backgroundColor: '#1E1E1E'}]}>
+//     <Text style={styles.title}>{title}</Text>
+//   </View>
+// );
 export const Home = () => {
   const navigation = useRootNavigation();
   const getKeyExtractor = item => item.id.toString();
+
+  const [selectedCard, setSelectedCard] = useState(section[0]?.title);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity style={styles.container}>
@@ -40,7 +43,18 @@ export const Home = () => {
   };
   return (
     <ScrollView style={styles.root}>
-      <CategoryHeader title={'Maintenance & Repair Service'} />
+      <View style={styles.categoryWrap}>
+        {section.map((item, index) => {
+          return (
+            <CategoryHeader
+              card={item}
+              key={item.title + index}
+              selectedCard={selectedCard}
+              setSelectedCard={setSelectedCard}
+            />
+          );
+        })}
+      </View>
       <FlatList
         data={services}
         renderItem={renderItem}
@@ -111,13 +125,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   header: {
-    backgroundColor: colors.black,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: spacing.extraSmall,
+    borderRadius: 5,
+    width: '50%',
   },
   title: {
     fontSize: 14,
     fontWeight: 'bold',
     color: colors.white,
     padding: 5,
+    textAlign: 'center',
+  },
+
+  categoryWrap: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    justifyContent: 'space-around',
+    gap: 5,
   },
 });
