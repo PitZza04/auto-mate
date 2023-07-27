@@ -10,70 +10,51 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import React, {useImperativeHandle, useRef} from 'react';
+import React, {useImperativeHandle, useRef, useState} from 'react';
 import {spacing} from '../../theme/spacing';
 import {colors} from '../../theme/colors';
 import {images, typography} from '../../theme';
+import {ControlledInput} from '../../components/controlled-input';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {z} from 'zod';
+import {phoneSchema} from '../../lib/validations/auth';
+import {LoginComponent} from './login';
 
+type PhoneFormValues = z.infer<typeof phoneSchema>;
 export const Login = () => {
-  const input = useRef<TextInput>();
+  const {control, handleSubmit} = useForm<PhoneFormValues>({
+    resolver: zodResolver(phoneSchema),
+  });
 
-  function focusInput() {
-    console.log('hello', input.current);
-    input.current?.focus();
-  }
-
-  const handleSubmit = () => {
-    console.log('Hello World');
+  const onAuthSubmit = (data: PhoneFormValues) => {
+    console.log('Hello World', data);
   };
   return (
     <View style={$root}>
       <Image
-        source={images.logoWithTagline}
+        source={images['logoWithTagline']}
         style={{
-          height: '60%',
+          height: '20%',
           width: '60%',
-
           resizeMode: 'contain',
         }}
       />
-      <TouchableOpacity
-        activeOpacity={1}
-        style={$containerStyles}
-        onPress={focusInput}>
-        <TextInput
-          placeholder="Email"
-          underlineColorAndroid={colors.transparent}
-          textAlignVertical="center"
-          placeholderTextColor={colors.palette.neutral900}
-          style={$inputStyles}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={1}
-        style={$containerStyles}
-        onPress={focusInput}>
-        <TextInput
-          placeholder="Password"
-          underlineColorAndroid={colors.transparent}
-          textAlignVertical="center"
-          placeholderTextColor={colors.palette.neutral900}
-          style={$inputStyles}
-        />
-      </TouchableOpacity>
-      <Button title="Submit" onPress={handleSubmit} />
+      <LoginComponent />
     </View>
   );
 };
 
 const $root: ViewStyle = {
   flex: 1,
-  justifyContent: 'center',
+  paddingTop: spacing.large,
   alignItems: 'center',
   backgroundColor: colors.background,
   paddingHorizontal: spacing.medium,
 };
-
+const $textField: ViewStyle = {
+  marginBottom: spacing.large,
+};
 const $containerStyles: ViewStyle = {
   width: '100%',
   height: 50,

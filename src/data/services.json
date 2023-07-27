@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "iconName": "maintenance",
+    "categoryName": "Maintenance"
+  },
+  {
+    "id": 2,
+    "iconName": "maintenance",
+    "categoryName": "Aircon"
+  },
+  {
+    "id": 3,
+    "iconName": "maintenance",
+    "categoryName": "Wheel & Tires"
+  },
+  {
+    "id": 4,
+    "iconName": "maintenance",
+    "categoryName": "Radiant Cooling System"
+  },
+  {
+    "id": 5,
+    "iconName": "maintenance",
+    "categoryName": "Transmission"
+  },
+  {
+    "id": 6,
+    "iconName": "maintenance",
+    "categoryName": "Brake System"
+  },
+  {
+    "id": 7,
+    "iconName": "maintenance",
+    "categoryName": "Engine"
+  },
+  {
+    "id": 8,
+    "iconName": "maintenance",
+    "categoryName": "Electricals"
+  },
+  {
+    "id": 9,
+    "iconName": "maintenance",
+    "categoryName": "Under Chassis"
+  },
+  {
+    "id": 0,
+    "iconName": "maintenance",
+    "categoryName": "Stering Wheel"
+  }
+]

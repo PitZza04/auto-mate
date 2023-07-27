@@ -7,3 +7,5 @@ export * from './timing';
 export * from './images';
 
 export * from './typography';
+
+export * from './emoji';

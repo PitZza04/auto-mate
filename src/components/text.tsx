@@ -88,7 +88,14 @@ const $fontWeightStyles = Object.entries(typography.primary).reduce(
 const $baseStyle = [
   $sizeStyles.sm,
   $fontWeightStyles.normal,
-  {color: colors.text},
+  {color: colors.black},
+];
+const $errorStyle = [
+  $sizeStyles.xs,
+  $fontWeightStyles.light,
+  {
+    color: colors.error,
+  },
 ];
 
 const $presets = {
@@ -109,7 +116,12 @@ const $presets = {
     $fontWeightStyles.medium,
   ] as StyleProp<TextStyle>,
 
-  formLabel: [$baseStyle, $fontWeightStyles.medium] as StyleProp<TextStyle>,
+  formLabel: [
+    $baseStyle,
+    $sizeStyles.xxs,
+    $fontWeightStyles.bold,
+  ] as StyleProp<TextStyle>,
+  helperText: [$errorStyle] as StyleProp<TextStyle>,
 
   formHelper: [
     $baseStyle,
