@@ -19,6 +19,7 @@ import section from '../../data/section.json';
 import {getWindowHeight, getWindowWidth} from '../../utils/layout';
 import {CategoryHeader} from './category-header';
 import {shadows} from '../../theme/shadow';
+import {CategoryList} from './category-list';
 
 // const CategoryHeader = ({title}) => (
 //   <View style={[styles.header, {backgroundColor: '#1E1E1E'}]}>
@@ -26,23 +27,10 @@ import {shadows} from '../../theme/shadow';
 //   </View>
 // );
 export const Home = () => {
-  const navigation = useRootNavigation();
-  const [selectedCard, setSelectedCard] = useState(section[0]?.title);
-  const getKeyExtractor = item => item.id.toString();
-
-  const renderItem = ({item}) => {
-    return (
-      <Pressable style={styles.container}>
-        <Image
-          source={images.maintenance}
-          style={{
-            resizeMode: 'contain',
-          }}
-        />
-        <Text style={styles.categoryName}>{item.categoryName}</Text>
-      </Pressable>
-    );
-  };
+  const [selectedCard, setSelectedCard] = useState(section[0].title);
+  const categoryIndex = section.findIndex(item => item.title === selectedCard);
+  const categories = section[categoryIndex];
+  console.log('categories', categories);
   return (
     <ScrollView style={styles.root}>
       <View style={styles.categoryWrap}>
@@ -57,31 +45,7 @@ export const Home = () => {
           );
         })}
       </View>
-      <FlatList
-        data={services}
-        renderItem={renderItem}
-        numColumns={3}
-        nestedScrollEnabled={true}
-        scrollEnabled={false}
-        contentContainerStyle={styles.contentContainerStyle}
-        columnWrapperStyle={styles.columnWrapper}
-        ListFooterComponent={<View style={{marginBottom: 5}} />}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={getKeyExtractor}
-      />
-      {/* <CategoryHeader title={'Added Services'} />
-      <FlatList
-        data={added}
-        renderItem={renderItem}
-        numColumns={3}
-        nestedScrollEnabled={true}
-        scrollEnabled={false}
-        contentContainerStyle={styles.contentContainerStyle}
-        columnWrapperStyle={styles.columnWrapper}
-        ListFooterComponent={<View style={{marginBottom: 5}} />}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={getKeyExtractor}
-      /> */}
+      <CategoryList categories={categories ? categories : null} />
     </ScrollView>
   );
 };
@@ -95,37 +59,7 @@ const styles = StyleSheet.create({
     padding: 16,
     rowGap: 13,
   },
-  columnWrapper: {
-    justifyContent: 'space-between',
-  },
-  container: {
-    backgroundColor: '#fff',
-    width: getWindowWidth(28),
-    height: getWindowHeight(11),
 
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    borderColor: '#CECECE',
-    borderWidth: 1,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 2,
-    borderRadius: 10,
-  },
-  categoryName: {
-    fontSize: 11,
-    paddingTop: 5,
-    color: colors.black,
-    fontWeight: 'bold',
-    fontFamily: 'Inter-Regular',
-    textAlign: 'center',
-  },
   header: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -9,47 +9,47 @@
       },
       {
         "id": 2,
-        "iconName": "maintenance",
+        "iconName": "aircon",
         "categoryName": "Aircon"
       },
       {
         "id": 3,
-        "iconName": "maintenance",
-        "categoryName": "Wheel & Tires"
+        "iconName": "tires",
+        "categoryName": "Tires & Wheels"
       },
       {
         "id": 4,
-        "iconName": "maintenance",
+        "iconName": "radiator",
         "categoryName": "Radiant Cooling System"
       },
       {
         "id": 5,
-        "iconName": "maintenance",
+        "iconName": "transmission",
         "categoryName": "Transmission"
       },
       {
         "id": 6,
-        "iconName": "maintenance",
+        "iconName": "brake",
         "categoryName": "Brake System"
       },
       {
         "id": 7,
-        "iconName": "maintenance",
+        "iconName": "engine",
         "categoryName": "Engine"
       },
       {
         "id": 8,
-        "iconName": "maintenance",
+        "iconName": "electricals",
         "categoryName": "Electricals"
       },
       {
         "id": 9,
-        "iconName": "maintenance",
+        "iconName": "underchassis",
         "categoryName": "Under Chassis"
       },
       {
         "id": 0,
-        "iconName": "maintenance",
+        "iconName": "steeringwheel",
         "categoryName": "Stering Wheel"
       }
     ]
@@ -59,47 +59,47 @@
     "data": [
       {
         "id": 1,
-        "iconName": "maintenance",
+        "iconName": "carwash",
         "categoryName": "Car Wash"
       },
       {
         "id": 2,
-        "iconName": "maintenance",
-        "categoryName": "Auto Glass"
+        "iconName": "autoglass",
+        "categoryName": "Auto-Glass"
       },
       {
         "id": 3,
-        "iconName": "maintenance",
+        "iconName": "upholstery",
         "categoryName": "Upholstery"
       },
       {
         "id": 4,
-        "iconName": "maintenance",
+        "iconName": "calibration",
         "categoryName": "Calibration"
       },
       {
         "id": 5,
-        "iconName": "maintenance",
+        "iconName": "painting",
         "categoryName": "Painting"
       },
       {
         "id": 6,
-        "iconName": "maintenance",
+        "iconName": "denting",
         "categoryName": "Denting"
       },
       {
         "id": 7,
-        "iconName": "maintenance",
+        "iconName": "accessories",
         "categoryName": "Accessories"
       },
       {
         "id": 8,
-        "iconName": "maintenance",
-        "categoryName": "Mufler"
+        "iconName": "muffler",
+        "categoryName": "muffler"
       },
       {
         "id": 9,
-        "iconName": "maintenance",
+        "iconName": "fabrication",
         "categoryName": "Fabrication"
       }
     ]
