@@ -8,6 +8,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Pressable,
 } from 'react-native';
 
 import {useRootNavigation} from '../../hooks/use-navigation';
@@ -17,6 +18,7 @@ import services from '../../data/services.json';
 import section from '../../data/section.json';
 import {getWindowHeight, getWindowWidth} from '../../utils/layout';
 import {CategoryHeader} from './category-header';
+import {shadows} from '../../theme/shadow';
 
 // const CategoryHeader = ({title}) => (
 //   <View style={[styles.header, {backgroundColor: '#1E1E1E'}]}>
@@ -25,12 +27,12 @@ import {CategoryHeader} from './category-header';
 // );
 export const Home = () => {
   const navigation = useRootNavigation();
+  const [selectedCard, setSelectedCard] = useState(section[0]?.title);
   const getKeyExtractor = item => item.id.toString();
 
-  const [selectedCard, setSelectedCard] = useState(section[0]?.title);
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity style={styles.container}>
+      <Pressable style={styles.container}>
         <Image
           source={images.maintenance}
           style={{
@@ -38,7 +40,7 @@ export const Home = () => {
           }}
         />
         <Text style={styles.categoryName}>{item.categoryName}</Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
   return (
@@ -144,6 +146,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 16,
     justifyContent: 'space-around',
-    gap: 5,
+    gap: 15,
   },
 });

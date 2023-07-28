@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {spacing} from '../../theme';
+import {shadows} from '../../theme/shadow';
 
 export const CategoryHeader = ({card, setSelectedCard, selectedCard}) => {
   const isActive = card?.title === selectedCard;
@@ -18,11 +19,13 @@ export const CategoryHeader = ({card, setSelectedCard, selectedCard}) => {
 
 const styles = StyleSheet.create({
   header: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: spacing.extraSmall,
     borderRadius: 5,
-    width: '50%',
+
+    ...shadows.light,
   },
   title: {
     fontSize: 14,
