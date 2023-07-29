@@ -9,7 +9,17 @@ import {AccountScreen} from '../screen/account';
 import {CartScreen} from '../screen/cart';
 
 import TabBarLabel from './tab-bar-label';
+import {TransactionScreen} from '../screen/transaction';
+import {DiagnoseScreen} from '../screen/diagnose';
+import SvgFacebook from '../components/icon/facebook';
+import SvgDiagnose from '../components/icon/bottom-tab/diagnose';
+
 const Tab = createBottomTabNavigator();
+
+const TabBarIcon = props => {
+  console.log('TabBarIcon', props);
+  return <Home {...props} />;
+};
 const BottomTabNavigator = () => {
   const isConnected = false;
 
@@ -46,12 +56,20 @@ const BottomTabNavigator = () => {
         component={HomeScreen}
       />
       <Tab.Screen
-        name="Cart"
+        name="Diagnose"
         options={{
           headerShown: false,
-          tabBarIcon: props => <ShoppingCart {...props} />,
+          tabBarIcon: props => <SvgDiagnose {...props} />,
         }}
-        component={CartScreen}
+        component={DiagnoseScreen}
+      />
+      <Tab.Screen
+        name="Transactions"
+        options={{
+          headerShown: false,
+          tabBarIcon: props => <SvgFacebook fill={props.color} />,
+        }}
+        component={TransactionScreen}
       />
       <Tab.Screen
         name="Account"
