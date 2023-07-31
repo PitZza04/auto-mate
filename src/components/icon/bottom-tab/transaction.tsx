@@ -1,17 +1,25 @@
 import React from 'react';
-
-import Svg, {SvgProps, Path, Defs} from 'react-native-svg';
-
-const SvgFacebook = (props: SvgProps) => (
-  <Svg width={24} height={24} viewBox="0 0 48 48" fill="none" {...props}>
+import Svg, {Path} from 'react-native-svg';
+const SvgTransaction = (props: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => (
+  <Svg width={24} height={24} viewBox="0 0 27 27" fill="none">
     <Path
-      d="M48 24C48 10.745 37.255 0 24 0S0 10.745 0 24c0 11.979 8.776 21.908 20.25 23.708v-16.77h-6.094V24h6.094v-5.288c0-6.014 3.583-9.337 9.065-9.337 2.625 0 5.372.469 5.372.469v5.906h-3.026c-2.981 0-3.911 1.85-3.911 3.75V24h6.656l-1.064 6.938H27.75v16.77C39.224 45.908 48 35.978 48 24Z"
-      fill={props.color}
+      d="M23.1875 1.875H3.8125C3.29864 1.875 2.80583 2.07913 2.44248 2.44248C2.07913 2.80583 1.875 3.29864 1.875 3.8125V23.1875C1.875 23.7014 2.07913 24.1942 2.44248 24.5575C2.80583 24.9209 3.29864 25.125 3.8125 25.125H23.1875C23.7014 25.125 24.1942 24.9209 24.5575 24.5575C24.9209 24.1942 25.125 23.7014 25.125 23.1875V3.8125C25.125 3.29864 24.9209 2.80583 24.5575 2.44248C24.1942 2.07913 23.7014 1.875 23.1875 1.875Z"
+      stroke={props.color}
+      strokeWidth={3}
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
-    <Defs>
-      <Path fill={props.color} d="M0 0h48v48H0z" />
-    </Defs>
+    <Path
+      d="M11.5626 18.0208L14.7917 20.6042L19.9584 14.1458M7.04175 7.6875H19.9584M7.04175 12.8542H12.2084"
+      stroke={props.color}
+      strokeWidth={3}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </Svg>
 );
-
-export default SvgFacebook;
+export default SvgTransaction;

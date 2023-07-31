@@ -13,6 +13,7 @@ import {TransactionScreen} from '../screen/transaction';
 import {DiagnoseScreen} from '../screen/diagnose';
 import SvgFacebook from '../components/icon/facebook';
 import SvgDiagnose from '../components/icon/bottom-tab/diagnose';
+import SvgTransaction from '../components/icon/bottom-tab/transaction';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,7 +68,7 @@ const BottomTabNavigator = () => {
         name="Transactions"
         options={{
           headerShown: false,
-          tabBarIcon: props => <SvgFacebook fill={props.color} />,
+          tabBarIcon: props => <SvgTransaction {...props} />,
         }}
         component={TransactionScreen}
       />
