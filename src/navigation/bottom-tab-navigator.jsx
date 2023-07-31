@@ -57,7 +57,7 @@ const BottomTabNavigator = () => {
         component={HomeScreen}
       />
       <Tab.Screen
-        name="Diagnose"
+        name="Diagnostic"
         options={{
           headerShown: false,
           tabBarIcon: props => <SvgDiagnose {...props} />,
