@@ -1,24 +1,12 @@
-import React, {useCallback, useLayoutEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Pressable,
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, ScrollView} from 'react-native';
 
-import {useRootNavigation} from '../../hooks/use-navigation';
-import {Header} from '../../components/header';
 import {colors, images, spacing} from '../../theme';
-import services from '../../data/services.json';
+
 import section from '../../data/section.json';
-import {getWindowHeight, getWindowWidth} from '../../utils/layout';
+
 import {CategoryHeader} from './category-header';
-import {shadows} from '../../theme/shadow';
+
 import {CategoryList} from './category-list';
 
 // const CategoryHeader = ({title}) => (

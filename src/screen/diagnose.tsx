@@ -1,7 +1,9 @@
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
-import React from 'react';
+import {Button, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import React, {FC} from 'react';
+import {useRootNavigation} from '../hooks/use-navigation';
 
-export const DiagnoseScreen = () => {
+export const DiagnoseScreen: FC = () => {
+  const navigation = useRootNavigation();
   return (
     <View style={$root}>
       <Text>Diagnose Screen</Text>
@@ -9,6 +11,10 @@ export const DiagnoseScreen = () => {
         <Text style={styles.text}>Type:</Text>
         <View style={styles.spacing} />
         <Text style={styles.text}>1.0</Text>
+        <Button
+          title="Awit"
+          onPress={() => navigation.navigate('Product', {id: 2})}
+        />
       </View>
     </View>
   );

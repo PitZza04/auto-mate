@@ -1,26 +1,31 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {Home, ShoppingCart, User2} from 'lucide-react-native';
+import {Home, User2} from 'lucide-react-native';
 import {colors} from '../theme/colors';
 import {useRootNavigation} from '../hooks/use-navigation';
 
 import {HomeScreen} from '../screen/home';
 import {AccountScreen} from '../screen/account';
-import {CartScreen} from '../screen/cart';
 
 import TabBarLabel from './tab-bar-label';
 import {TransactionScreen} from '../screen/transaction';
 import {DiagnoseScreen} from '../screen/diagnose';
-import SvgFacebook from '../components/icon/facebook';
+
 import SvgDiagnose from '../components/icon/bottom-tab/diagnose';
 import SvgTransaction from '../components/icon/bottom-tab/transaction';
+import {ScreenProps} from 'react-native-screens';
+import {RouteProp} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
-const TabBarIcon = props => {
-  console.log('TabBarIcon', props);
-  return <Home {...props} />;
-};
+// const TabBarIcon = props => {
+//   console.log('TabBarIcon', props);
+//   return <Home {...props} />;
+// };
+
+function TabBarIcon(props) {
+  return <SvgTransaction {...props} />;
+}
 const BottomTabNavigator = () => {
   const isConnected = false;
 
@@ -33,6 +38,9 @@ const BottomTabNavigator = () => {
       }
     };
   };
+
+  // return <TabBarLabel label={`${route.name}`} focused={focused} />;
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -44,9 +52,7 @@ const BottomTabNavigator = () => {
         tabBarLabelStyle: {
           paddingTop: 5,
         },
-        tabBarLabel: function tabBarLabel({focused, color}) {
-          return <TabBarLabel label={`${route.name}`} focused={focused} />;
-        },
+        tabBarLabel: props => <TabBarLabel label={route.name} {...props} />,
       })}>
       <Tab.Screen
         name="Home"
@@ -68,7 +74,7 @@ const BottomTabNavigator = () => {
         name="Transactions"
         options={{
           headerShown: false,
-          tabBarIcon: props => <SvgTransaction {...props} />,
+          tabBarIcon: TabBarIcon,
         }}
         component={TransactionScreen}
       />

@@ -10,6 +10,7 @@ import {LoginScreen} from '../screen/login';
 import {Header} from '../components/header';
 import {colors} from '../theme';
 import {useRootNavigation} from '../hooks/use-navigation';
+import {ProductScreen} from '../screen/product';
 
 const RootStack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export const RootNavigator = () => {
         headerShown: false,
       }}>
       <RootStack.Screen name="App" component={BottomTabNavigator} />
+      <RootStack.Screen name="Product" component={ProductScreen} />
 
       <RootStack.Group
         screenOptions={{

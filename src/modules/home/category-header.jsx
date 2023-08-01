@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {spacing} from '../../theme';
+import {colors, spacing} from '../../theme';
 import {shadows} from '../../theme/shadow';
 
 export const CategoryHeader = ({card, setSelectedCard, selectedCard}) => {
   const isActive = card?.title === selectedCard;
-  const activeBg = isActive ? '#1E1E1E' : '#fff';
-  const activeColor = isActive ? '#fff' : '#1E1E1E';
+  const activeBg = isActive ? '#1E1E1E' : colors.white;
+  const activeColor = isActive ? colors.white : '#1E1E1E';
 
   return (
     <TouchableOpacity
