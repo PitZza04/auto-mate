@@ -1,14 +1,19 @@
+import {LabelPosition} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import React from 'react';
 
 import {StyleSheet, Text} from 'react-native';
 
-const TabBarLabel = props => {
-  console.log('Props', props);
+type Props = {
+  focused: boolean;
+  color: string;
+  position: LabelPosition;
+  children: string;
+};
+const TabBarLabel = ({focused, children}: Props) => {
+  const activeColor = focused ? '#000' : '#5e6267';
   return (
-    <Text
-      adjustsFontSizeToFit
-      style={[styles.label, {color: props.focused ? '#000' : '#5e6267'}]}>
-      {/* {label} */} hello
+    <Text adjustsFontSizeToFit style={[styles.label, {color: activeColor}]}>
+      {children}
     </Text>
   );
 };

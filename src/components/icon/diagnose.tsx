@@ -3,7 +3,7 @@ import Svg, {Path} from 'react-native-svg';
 const SvgDiagnose = (props: {
   focused: boolean;
   color: string;
-  size: number;
+  size?: number;
 }) => (
   <Svg width={26} height={26} viewBox="0 0 25 26" fill="none" {...props}>
     <Path

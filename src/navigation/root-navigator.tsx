@@ -1,21 +1,16 @@
 import React from 'react';
-import {
-  CardStyleInterpolators,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabNavigator from './bottom-tab-navigator';
-import {SettingsScreen} from '../screen/settings';
+
 import {NotificationScreen} from '../screen/notification';
 import {LoginScreen} from '../screen/login';
-import {Header} from '../components/header';
-import {colors} from '../theme';
-import {useRootNavigation} from '../hooks/use-navigation';
-import {ProductScreen} from '../screen/product';
 
-const RootStack = createStackNavigator();
+import {ProductScreen} from '../screen/product';
+import type {RootStackParamList} from './types';
+
+const RootStack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
-  const navigation = useRootNavigation();
   return (
     <RootStack.Navigator
       screenOptions={{
@@ -27,14 +22,6 @@ export const RootNavigator = () => {
       <RootStack.Group
         screenOptions={{
           headerShown: true,
-          header: () => (
-            <Header
-              titleStyle={{color: colors.black}}
-              leftIcon="caretLeft"
-              leftIconColor={colors.black}
-              onLeftPress={() => navigation.goBack()}
-            />
-          ),
         }}>
         <RootStack.Screen
           name={'Login'}

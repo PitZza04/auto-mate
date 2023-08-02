@@ -21,12 +21,8 @@ interface CustomTextProps {
    */
   text?: string;
   /**
-     * Optional options to pass to i18n. Useful for interpolation
-     * as well as explicitly setting locale or translation fallbacks.
-  
-    /**
-     * An optional style override useful for padding & margin.
-     */
+   * An optional style override useful for padding & margin.
+   */
   style?: StyleProp<TextStyle>;
   /**
    * One of the different types of text presets.
@@ -52,12 +48,12 @@ export function Text(props: TextProps) {
   const {weight, size, text, children, style: $styleOverride, ...rest} = props;
 
   const content = text || children;
-  const preset = $presets[props.preset] ? props.preset : 'default';
+  const preset = $presets[props.preset!] ? props.preset : 'default';
 
   const $styles = [
-    $presets[preset],
-    $fontWeightStyles[weight],
-    $sizeStyles[size],
+    $presets[preset!],
+    $fontWeightStyles[weight!],
+    $sizeStyles[size!],
     $styleOverride,
   ];
 

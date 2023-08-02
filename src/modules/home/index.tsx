@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 
-import {colors, images, spacing} from '../../theme';
+import {colors, spacing} from '../../theme';
 
 import section from '../../data/section.json';
 
@@ -14,6 +14,7 @@ import {CategoryList} from './category-list';
 //     <Text style={styles.title}>{title}</Text>
 //   </View>
 // );
+
 export const Home = () => {
   const [selectedCard, setSelectedCard] = useState(section[0].title);
   const categoryIndex = section.findIndex(item => item.title === selectedCard);
@@ -25,15 +26,15 @@ export const Home = () => {
         {section.map((item, index) => {
           return (
             <CategoryHeader
-              card={item}
+              title={item.title}
               key={item.title + index}
               selectedCard={selectedCard}
-              setSelectedCard={setSelectedCard}
+              onPress={() => setSelectedCard(item.title)}
             />
           );
         })}
       </View>
-      <CategoryList categories={categories ? categories : null} />
+      <CategoryList categories={categories.data && categories.data} />
     </ScrollView>
   );
 };

@@ -1,4 +1,8 @@
-export const images = {
+interface ImageSources {
+  [key: string]: any;
+}
+
+export const images: ImageSources = {
   logoWithTagline: require('../../assets/images/logo-with-tagline.png'),
   maintenance: require('../../assets/images/maintenance.png'),
   aircon: require('../../assets/images/aircon.png'),

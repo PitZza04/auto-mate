@@ -1,27 +1,50 @@
 import * as React from 'react';
 import {ComponentType} from 'react';
 import {
+  ColorValue,
   Image,
   ImageStyle,
   StyleProp,
   TouchableOpacity,
   TouchableOpacityProps,
   View,
-  ViewProps,
   ViewStyle,
 } from 'react-native';
-import * as LucideIcons from 'lucide-react-native';
-import {LucideIcon} from 'lucide-react-native';
+// import * as LucideIcons from 'lucide-react-native';
+// import {LucideIcon} from 'lucide-react-native';
 
 export type PreviousIconTypes = keyof typeof previousIconRegistry;
-export type IconTypes = PreviousIconTypes | keyof typeof LucideIcons;
-
+// export type IconTypes = PreviousIconTypes | keyof typeof LucideIcons;
+export type IconTypes = keyof typeof iconRegistry;
 interface IconProps extends TouchableOpacityProps {
+  /**
+   * The name of the icon
+   */
   icon: IconTypes;
-  color?: string;
+
+  /**
+   * An optional tint color for the icon
+   */
+  color?: ColorValue;
+
+  /**
+   * An optional size for the icon. If not provided, the icon will be sized to the icon's resolution.
+   */
   size?: number;
+
+  /**
+   * Style overrides for the icon image
+   */
   style?: StyleProp<ImageStyle>;
+
+  /**
+   * Style overrides for the icon container
+   */
   containerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * An optional function to be called when the icon is pressed
+   */
   onPress?: TouchableOpacityProps['onPress'];
 }
 
@@ -40,46 +63,46 @@ export function Icon(props: IconProps) {
     ? TouchableOpacity
     : View;
 
-  const isPreviousIcon = Object.prototype.hasOwnProperty.call(
-    previousIconRegistry,
-    icon,
+  // const isPreviousIcon = Object.prototype.hasOwnProperty.call(
+  //   previousIconRegistry,
+  //   icon,
+  // );
+
+  // if (isPreviousIcon) {
+  return (
+    <Wrapper
+      accessibilityRole={isPressable ? 'imagebutton' : undefined}
+      {...WrapperProps}
+      style={$containerStyleOverride}>
+      <Image
+        style={[
+          $imageStyle,
+          color && {tintColor: color},
+          size && {width: size, height: size},
+          $imageStyleOverride,
+        ]}
+        source={previousIconRegistry[icon]}
+      />
+    </Wrapper>
   );
+  // } else {
+  //   const IconComponent: LucideIcon = LucideIcons[
+  //     icon as keyof typeof LucideIcons
+  //   ] as LucideIcon;
 
-  if (isPreviousIcon) {
-    return (
-      <Wrapper
-        accessibilityRole={isPressable ? 'imagebutton' : undefined}
-        {...WrapperProps}
-        style={$containerStyleOverride}>
-        <Image
-          style={[
-            $imageStyle,
-            color && {tintColor: color},
-            size && {width: size, height: size},
-            $imageStyleOverride,
-          ]}
-          source={previousIconRegistry[icon as PreviousIconTypes]}
-        />
-      </Wrapper>
-    );
-  } else {
-    const IconComponent: LucideIcon = LucideIcons[
-      icon as keyof typeof LucideIcons
-    ] as LucideIcon;
-
-    return (
-      <Wrapper
-        accessibilityRole={isPressable ? 'imagebutton' : undefined}
-        {...WrapperProps}
-        style={$containerStyleOverride}>
-        <IconComponent
-          stroke={color || '#000'}
-          width={size || 24}
-          height={size || 24}
-        />
-      </Wrapper>
-    );
-  }
+  //   return (
+  //     <Wrapper
+  //       accessibilityRole={isPressable ? 'imagebutton' : undefined}
+  //       {...WrapperProps}
+  //       style={$containerStyleOverride}>
+  //       <IconComponent
+  //         stroke={color || '#000'}
+  //         width={size || 24}
+  //         height={size || 24}
+  //       />
+  //     </Wrapper>
+  //   );
+  // }
 }
 
 export const previousIconRegistry = {
@@ -107,7 +130,7 @@ export const previousIconRegistry = {
   x: require('../../assets/icons/x.png'),
 };
 
-const $imageStyle: ImageStyle = {
+const $imageStyle: StyleProp<ImageStyle> = {
   resizeMode: 'contain',
 };
 

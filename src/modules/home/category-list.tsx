@@ -1,38 +1,49 @@
-import {StyleSheet, Text, View, FlatList, Pressable, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Pressable,
+  Image,
+  ListRenderItemInfo,
+} from 'react-native';
 import React from 'react';
 import {getWindowHeight, getWindowWidth} from '../../utils/layout';
-import {colors, images} from '../../theme';
+import {colors, images, spacing} from '../../theme';
 
-const CategoryListCard = ({categoryName, iconName, onPress}) => {
+interface Category {
+  id: number;
+  categoryName: string;
+  iconName: string;
+}
+interface CategoryListProps {
+  categories?: Category[];
+}
+const CategoryListCard = ({id, categoryName, iconName}: Category) => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
-      <Image
-        source={images[iconName]}
-        style={{
-          resizeMode: 'contain',
-        }}
-      />
+    <Pressable style={styles.container} onPress={() => console.log(id)}>
+      <Image source={images[iconName]} style={styles.iconImage} />
       <Text style={styles.title}>{categoryName}</Text>
     </Pressable>
   );
 };
-export const CategoryList = ({categories}) => {
-  console.log('Category List', categories);
-  const getKeyExtractor = item => item.id.toString();
 
-  const renderItem = ({item}) => {
-    return <CategoryListCard {...item} onPress={() => {}} />;
+export const CategoryList = ({categories}: CategoryListProps) => {
+  const getKeyExtractor = (item: Category) => item.id.toString();
+
+  const renderItem = ({item}: ListRenderItemInfo<Category>) => {
+    return <CategoryListCard {...item} />;
   };
   return (
-    <FlatList
-      data={categories.data}
+    <FlatList<Category>
+      data={categories}
       renderItem={renderItem}
       numColumns={3}
       nestedScrollEnabled={true}
       scrollEnabled={false}
       contentContainerStyle={styles.contentContainerStyle}
       columnWrapperStyle={styles.columnWrapper}
-      ListFooterComponent={<View style={{marginBottom: 5}} />}
+      ListFooterComponent={<View style={{marginBottom: spacing.extraSmall}} />}
       showsVerticalScrollIndicator={false}
       keyExtractor={getKeyExtractor}
     />
@@ -74,5 +85,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Inter-Regular',
     textAlign: 'center',
+  },
+  iconImage: {
+    resizeMode: 'contain',
   },
 });

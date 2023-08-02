@@ -6,11 +6,11 @@ export function ProductScreen({route}) {
   const navigation = useRootNavigation();
   console.log(navigation.canGoBack());
   const {id} = route.params;
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => <Text>Hello</Text>,
-    });
-  }, []);
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerLeft: () => <Text>Hello</Text>,
+  //   });
+  // }, []);
   return (
     <View>
       <Text>{id}</Text>

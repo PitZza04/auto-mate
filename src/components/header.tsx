@@ -12,7 +12,7 @@ import {
   ExtendedEdge,
   useSafeAreaInsetsStyle,
 } from '../hooks/use-safearea-insets';
-import {Icon, IconTypes} from './icon';
+import {Icon, IconTypes} from './icons';
 import {colors, spacing} from '../theme';
 
 export interface HeaderProps {

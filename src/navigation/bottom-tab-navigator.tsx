@@ -1,6 +1,8 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationEventMap,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
-import {Home, User2} from 'lucide-react-native';
 import {colors} from '../theme/colors';
 import {useRootNavigation} from '../hooks/use-navigation';
 
@@ -11,27 +13,28 @@ import TabBarLabel from './tab-bar-label';
 import {TransactionScreen} from '../screen/transaction';
 import {DiagnoseScreen} from '../screen/diagnose';
 
-import SvgDiagnose from '../components/icon/bottom-tab/diagnose';
-import SvgTransaction from '../components/icon/bottom-tab/transaction';
-import {ScreenProps} from 'react-native-screens';
-import {RouteProp} from '@react-navigation/native';
+import type {HomeBottomTabsParamList} from './types';
+import {EventListenerCallback} from '@react-navigation/native';
+import {
+  AccountTabBarIcon,
+  DiagnosticTabBarIcon,
+  HomeTabBarIcon,
+  TransactionsTabBarIcon,
+} from './tab-bar-icon';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<HomeBottomTabsParamList>();
 
-// const TabBarIcon = props => {
-//   console.log('TabBarIcon', props);
-//   return <Home {...props} />;
-// };
-
-function TabBarIcon(props) {
-  return <SvgTransaction {...props} />;
-}
 const BottomTabNavigator = () => {
   const isConnected = false;
 
   const navigation = useRootNavigation();
-  const tabPressHandler = name => {
+  const tabPressHandler = (
+    name: keyof HomeBottomTabsParamList,
+  ): EventListenerCallback<BottomTabNavigationEventMap, 'tabPress'> => {
     return e => {
+      if (name === 'Transactions') {
+        console.log('awit');
+      }
       if (!isConnected) {
         navigation.navigate('Login');
         e.preventDefault();
@@ -39,12 +42,10 @@ const BottomTabNavigator = () => {
     };
   };
 
-  // return <TabBarLabel label={`${route.name}`} focused={focused} />;
-
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={({route}) => ({
+      screenOptions={{
         headerShadowVisible: true,
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: '#000',
@@ -52,13 +53,13 @@ const BottomTabNavigator = () => {
         tabBarLabelStyle: {
           paddingTop: 5,
         },
-        tabBarLabel: props => <TabBarLabel label={route.name} {...props} />,
-      })}>
+        tabBarLabel: TabBarLabel,
+      }}>
       <Tab.Screen
         name="Home"
         options={{
           headerShown: false,
-          tabBarIcon: props => <Home {...props} />,
+          tabBarIcon: HomeTabBarIcon,
         }}
         component={HomeScreen}
       />
@@ -66,7 +67,7 @@ const BottomTabNavigator = () => {
         name="Diagnostic"
         options={{
           headerShown: false,
-          tabBarIcon: props => <SvgDiagnose {...props} />,
+          tabBarIcon: DiagnosticTabBarIcon,
         }}
         component={DiagnoseScreen}
       />
@@ -74,7 +75,7 @@ const BottomTabNavigator = () => {
         name="Transactions"
         options={{
           headerShown: false,
-          tabBarIcon: TabBarIcon,
+          tabBarIcon: TransactionsTabBarIcon,
         }}
         component={TransactionScreen}
       />
@@ -82,11 +83,11 @@ const BottomTabNavigator = () => {
         name="Account"
         options={{
           headerShown: false,
-          tabBarIcon: props => <User2 {...props} />,
+          tabBarIcon: AccountTabBarIcon,
         }}
         component={AccountScreen}
         listeners={{
-          tabPress: tabPressHandler('Profile'),
+          tabPress: tabPressHandler('Account'),
         }}
       />
     </Tab.Navigator>
