@@ -3,18 +3,20 @@ import React from 'react';
 
 import {StyleSheet, Text} from 'react-native';
 
-type Props = {
+interface TabBarLabelProps {
   focused: boolean;
   color: string;
   position: LabelPosition;
-  children: string;
-};
-const TabBarLabel = ({focused, children}: Props) => {
+  children: React.ReactNode;
+}
+const TabBarLabel = ({focused, children}: TabBarLabelProps) => {
   const activeColor = focused ? '#000' : '#5e6267';
   return (
-    <Text adjustsFontSizeToFit style={[styles.label, {color: activeColor}]}>
-      {children}
-    </Text>
+    <>
+      <Text adjustsFontSizeToFit style={[styles.label, {color: activeColor}]}>
+        {children}
+      </Text>
+    </>
   );
 };
 

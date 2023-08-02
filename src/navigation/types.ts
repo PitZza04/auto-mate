@@ -5,10 +5,12 @@ export type HomeBottomTabsParamList = {
   Transactions: undefined;
   Account: undefined;
 };
-
+interface Props {
+  id: number;
+}
 export type RootStackParamList = {
   App: NavigatorScreenParams<HomeBottomTabsParamList>;
-  Product: undefined;
+  Product: Props;
   Login: undefined;
   Notification: undefined;
 };

@@ -1,9 +1,10 @@
 import {Text, View, Button, ViewStyle} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+
+import {useRootNavigation} from '../hooks/use-navigation';
 
 export const SettingsScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useRootNavigation();
   const goToNotification = () => {
     navigation.navigate('Notification');
   };
