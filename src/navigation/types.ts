@@ -8,7 +8,7 @@ export type HomeBottomTabsParamList = {
 
 export type RootStackParamList = {
   App: NavigatorScreenParams<HomeBottomTabsParamList>;
-  Product: undefined;
+  Product: {id: number};
   Login: undefined;
   Notification: undefined;
 };

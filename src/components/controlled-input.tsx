@@ -15,6 +15,7 @@ export function ControlledInput({
   name,
   ...textInputProps
 }: ControlledInputProps) {
+  const showFlex = (invalid: Boolean) => (invalid ? 'flex' : 'none');
   return (
     <Controller
       control={control}
@@ -31,11 +32,8 @@ export function ControlledInput({
             value={value}
             onChangeText={onChange}
             onBlur={onBlur}
-            error={invalid}
           />
-          <Text
-            preset="helperText"
-            style={{display: invalid ? 'flex' : 'none'}}>
+          <Text preset="helperText" style={{display: showFlex(invalid)}}>
             {error?.message}
           </Text>
         </View>

@@ -11,7 +11,7 @@ import {LoginWithGoogle} from './login-with-google';
 import {LoginWithFacebook} from './login-with-facebook';
 type PhoneFormValues = z.infer<typeof phoneSchema>;
 export function LoginComponent() {
-  const {control, handleSubmit} = useForm<PhoneFormValues>({
+  const {control} = useForm<PhoneFormValues>({
     resolver: zodResolver(phoneSchema),
   });
 
@@ -36,28 +36,16 @@ export function LoginComponent() {
           onPress={() => {
             console.log('hello');
           }}>
-          <Text style={{color: '#fff', fontSize: 14}}>Send Code</Text>
+          <Text style={styles.sendBtn}>Send Code</Text>
         </Pressable>
-        <RNText
-          style={{
-            fontSize: 12,
-            fontFamily: 'Inter-SemiBold',
-            fontWeight: '500',
-
-            color: colors.black,
-          }}>
-          OR
-        </RNText>
+        <RNText style={styles.textOr}>OR</RNText>
         <LoginWithFacebook />
         <LoginWithGoogle />
         <Text style={styles.terms}>
           By signing in you agree to our{' '}
           <Text
             onPress={navigateToTerms}
-            style={[
-              styles.terms,
-              {fontFamily: 'Inter-SemiBold', fontWeight: 'bold'},
-            ]}>
+            style={[styles.terms, styles.fontBold]}>
             Terms & Conditions
           </Text>
         </Text>
@@ -94,4 +82,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Inter-Regular',
   },
+  textOr: {
+    fontSize: 12,
+    fontFamily: 'Inter-SemiBold',
+    fontWeight: '500',
+    color: colors.black,
+  },
+  fontBold: {fontFamily: 'Inter-SemiBold', fontWeight: 'bold'},
+  sendBtn: {color: '#fff', fontSize: 14},
 });

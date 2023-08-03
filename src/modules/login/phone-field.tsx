@@ -10,7 +10,6 @@ import {
 import {Text} from '../../components/text';
 import {colors, countryList, spacing} from '../../theme';
 import {useState} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type PhoneFieldProps = {
   control: Control;
@@ -34,6 +33,7 @@ export default function PhoneField({
     // Prevent editing by setting isEditable to false on focus
     setIsEditable(false);
   };
+  const showFlex = (invalid: Boolean) => (invalid ? 'flex' : 'none');
   return (
     <Controller
       control={control}
@@ -42,42 +42,26 @@ export default function PhoneField({
         field: {value, onChange, onBlur},
         fieldState: {error, invalid},
       }) => (
-        <View
-          style={{
-            width: '100%',
-            padding: spacing.medium,
-            paddingBottom: spacing.small,
-            backgroundColor: '#efefef',
-            borderRadius: 10,
-          }}>
-          <Text preset="formLabel" style={{fontWeight: 'bold'}}>
+        <View style={styles.field}>
+          <Text preset="formLabel" weight="bold">
             {label}
           </Text>
           <View style={[styles.flexRow, {paddingTop: spacing.micro}]}>
             <Text
-              style={{
-                fontSize: 14,
-                padding: 0,
-                marginRight: 10,
-                fontWeight: 'bold',
-              }}>{`${countryList.emoji} ${countryList.dial_code}`}</Text>
+              style={
+                styles.countryCode
+              }>{`${countryList.emoji} ${countryList.dial_code}`}</Text>
             <TextInput
               {...textInputProps}
-              style={{
-                color: colors.black,
-                padding: 0,
-                fontWeight: '500',
-              }}
+              style={styles.textInputStyle}
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
             />
           </View>
 
-          <Text
-            preset="helperText"
-            style={{display: invalid ? 'flex' : 'none'}}>
-            {`error?.message`}
+          <Text preset="helperText" style={{display: showFlex(invalid)}}>
+            {`${error?.message}`}
           </Text>
         </View>
       )}
@@ -89,5 +73,23 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  countryCode: {
+    fontSize: 14,
+    padding: 0,
+    marginRight: 10,
+    fontWeight: 'bold',
+  },
+  field: {
+    width: '100%',
+    padding: spacing.medium,
+    paddingBottom: spacing.small,
+    backgroundColor: '#efefef',
+    borderRadius: 10,
+  },
+  textInputStyle: {
+    color: colors.black,
+    padding: 0,
+    fontWeight: '500',
   },
 });
